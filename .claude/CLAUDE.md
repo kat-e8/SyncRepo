@@ -21,5 +21,6 @@ When the user references one of these aliases in a `mcp__docker__*` tool call (`
 When the user references one of these aliases in a `mcp__postgres-mcp__*` tool call, pass the corresponding value as `connection_uri`:
 
 - `postgres-prod` → `connection_uri: "postgresql://katlego:password@clubuntu:5432/postgres-db"` (renamed from "postgres-clu" 2026-08-17)
+- `postgres-dev` → `connection_uri: "postgresql://mcp:mcp-password@katlegog.dala-cirius.ts.net:5432/mcp-db"`
 
 <!-- sync test: clubuntu 2026-08-17 02:40:21 -->
