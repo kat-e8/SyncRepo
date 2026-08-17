@@ -4,7 +4,3 @@
 - For git operations (status, log, diff, branch, add, commit, push, etc.), prefer `mcp__git-mcp__*` tools over running `git` via Bash, on any machine where a git MCP server is configured. Only fall back to Bash `git` for operations with no git-mcp equivalent (e.g. stash, reset, rebase), or when no git MCP server is present in the session.
 
 <!-- sync test: clubuntu 2026-08-17 02:40:21 -->
-
-<!-- sync test: KatlegoG (windows) 2026-08-17T07:58:01Z -->
-
-<!-- sync verified: KatlegoG (windows) 2026-08-17T08:04:33Z -->
