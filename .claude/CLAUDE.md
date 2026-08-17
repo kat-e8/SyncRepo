@@ -12,7 +12,7 @@ When the user references one of these aliases in a `mcp__docker__*` tool call (`
 - `clubuntu-dh` → `docker_host: "ssh://katlego@clubuntu"`
 
 - `ignition-dev` → `gateway_url: "http://katlegog.dala-cirius.ts.net:8088"`, `api_key: "MCPToken:xYODh2_t-ZNVl2_-MkIHxAI75wDogHUtOJvGX4Mm6n8"` (replaces the old "ignition" alias, removed 2026-08-13)
-- `ignition-prod` → `gateway_url: "http://clubuntu.dala-cirius.ts.net:9011"`, `api_key: "NewToken:x-nWADmcygdnsLm9LoRUFHjKTyD7QlNUaIH7Nbl7GPU"` (previously called "cloud-ignition", renamed 2026-08-13)
+- `ignition-prod` → `gateway_url: "http://clubuntu.dala-cirius.ts.net:9011"`, `api_key: "API_MCP:l4hM00ZiT7CaF9WWRNS3dLuCDszzVKGSHU1kZosOHbo"` (previously called "cloud-ignition", renamed 2026-08-13; key rotated 2026-08-17)
 
 
 # Postgres connection aliases
