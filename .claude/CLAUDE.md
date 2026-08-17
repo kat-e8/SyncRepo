@@ -6,3 +6,4 @@
 <!-- watcher test 3 -->
 <!-- watcher test 4 (debug) -->
 <!-- watcher test 5 (clean) -->
+<!-- final verification -->
