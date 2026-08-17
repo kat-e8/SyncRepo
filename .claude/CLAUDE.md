@@ -10,6 +10,10 @@ When the user references one of these aliases in a `mcp__docker__*` tool call (`
 - `katlegog-dh` → `docker_host: "ssh://docker-mcp-svc@katlegog"` (Windows machine KATLEGOG; SSH user is the `docker-mcp-svc` service account, not the interactive user — `katlego`/`katlego.gagoopane` will fail with permission denied)
 - `katmint-dh` → `docker_host: "ssh://katlego@katmint"`
 
+- `ignition-dev` → `gateway_url: "http://katlegog.dala-cirius.ts.net:8088"`, `api_key: "MCPToken:xYODh2_t-ZNVl2_-MkIHxAI75wDogHUtOJvGX4Mm6n8"` (replaces the old "ignition" alias, removed 2026-08-13)
+- `ignition-prod` → `gateway_url: "http://clubuntu.dala-cirius.ts.net:9011"`, `api_key: "NewToken:x-nWADmcygdnsLm9LoRUFHjKTyD7QlNUaIH7Nbl7GPU"` (previously called "cloud-ignition", renamed 2026-08-13)
+
+
 # Postgres connection aliases
 
 When the user references one of these aliases in a `mcp__postgres-mcp__*` tool call, pass the corresponding value as `connection_uri`:
