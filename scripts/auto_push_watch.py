@@ -32,29 +32,41 @@ def run(cmd: list[str]) -> subprocess.CompletedProcess:
 
 
 def sync_repo() -> None:
+    try:
+        _sync_repo_inner()
+    except Exception as exc:
+        log(f"ERROR: unhandled exception in sync_repo: {exc!r}")
+
+
+def _sync_repo_inner() -> None:
     status = run(["git", "status", "--porcelain", "--", ".claude/CLAUDE.md"])
+    log(f"DEBUG: status rc={status.returncode} out={status.stdout.strip()!r}")
     if not status.stdout.strip():
         return
 
     run(["git", "add", ".claude/CLAUDE.md"])
     host = socket.gethostname()
     commit = run(["git", "commit", "-m", f"auto-sync: CLAUDE.md updated on {host}", "--quiet"])
+    log(f"DEBUG: commit rc={commit.returncode} err={commit.stderr.strip()!r}")
     if commit.returncode != 0:
         log(f"INFO: nothing to commit ({commit.stderr.strip() or commit.stdout.strip()})")
         return
 
     fetch = run(["git", "fetch", "--quiet", "origin", BRANCH])
+    log(f"DEBUG: fetch rc={fetch.returncode} err={fetch.stderr.strip()!r}")
     if fetch.returncode != 0:
         log(f"ERROR: git fetch failed after local commit. Resolve manually in {REPO_DIR} (local commit is intact, unpushed). {fetch.stderr.strip()}")
         return
 
     rebase = run(["git", "rebase", "--quiet", f"origin/{BRANCH}"])
+    log(f"DEBUG: rebase rc={rebase.returncode} err={rebase.stderr.strip()!r}")
     if rebase.returncode != 0:
         run(["git", "rebase", "--abort"])
         log(f"ERROR: git rebase onto origin/{BRANCH} failed (likely conflict) after local commit. Resolve manually in {REPO_DIR} (local commit is intact, unpushed). {rebase.stderr.strip()}")
         return
 
     push = run(["git", "push", "--quiet", "origin", BRANCH])
+    log(f"DEBUG: push rc={push.returncode} err={push.stderr.strip()!r}")
     if push.returncode == 0:
         log(f"OK: pushed CLAUDE.md change from {host}")
     else:
