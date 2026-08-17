@@ -1,0 +1,12 @@
+[Unit]
+Description=Auto-push ~/dotfiles CLAUDE.md changes to GitHub
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/dotfiles/scripts/auto_push_watch.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
