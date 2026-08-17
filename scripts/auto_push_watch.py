@@ -43,9 +43,15 @@ def sync_repo() -> None:
         log(f"INFO: nothing to commit ({commit.stderr.strip() or commit.stdout.strip()})")
         return
 
-    pull = run(["git", "pull", "--rebase", "--quiet", "origin", BRANCH])
-    if pull.returncode != 0:
-        log(f"ERROR: git pull --rebase failed after local commit. Resolve manually in {REPO_DIR} (local commit is intact, unpushed). {pull.stderr.strip()}")
+    fetch = run(["git", "fetch", "--quiet", "origin", BRANCH])
+    if fetch.returncode != 0:
+        log(f"ERROR: git fetch failed after local commit. Resolve manually in {REPO_DIR} (local commit is intact, unpushed). {fetch.stderr.strip()}")
+        return
+
+    rebase = run(["git", "rebase", "--quiet", f"origin/{BRANCH}"])
+    if rebase.returncode != 0:
+        run(["git", "rebase", "--abort"])
+        log(f"ERROR: git rebase onto origin/{BRANCH} failed (likely conflict) after local commit. Resolve manually in {REPO_DIR} (local commit is intact, unpushed). {rebase.stderr.strip()}")
         return
 
     push = run(["git", "push", "--quiet", "origin", BRANCH])
