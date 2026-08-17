@@ -1,0 +1,11 @@
+[Unit]
+Description=Run dotfiles-pull.service every 30 seconds
+
+[Timer]
+OnBootSec=15s
+OnUnitActiveSec=30s
+AccuracySec=5s
+Persistent=true
+
+[Install]
+WantedBy=timers.target

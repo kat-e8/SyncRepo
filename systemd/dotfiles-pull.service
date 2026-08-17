@@ -1,0 +1,6 @@
+[Unit]
+Description=Fetch and fast-forward ~/dotfiles from GitHub (one-shot, triggered by dotfiles-pull.timer)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/dotfiles/scripts/auto_pull.py
